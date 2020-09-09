@@ -904,6 +904,7 @@ export function registerCommands(): void {
     disposables.push(vscode.commands.registerCommand('cpptools.activeConfigName', onGetActiveConfigName));
     disposables.push(vscode.commands.registerCommand('cpptools.activeConfigCustomVariable', onGetActiveConfigCustomVariable));
     disposables.push(vscode.commands.registerCommand('cpptools.setActiveConfigName', onSetActiveConfigName));
+    disposables.push(vscode.commands.registerCommand('cpptools.LogIntellisenseSetup', onLogIntellisenseSetup));
     getTemporaryCommandRegistrarInstance().executeDelayedCommands();
 }
 
@@ -1172,6 +1173,10 @@ function onGetActiveConfigCustomVariable(variableName: string): Thenable<string>
 function onLogDiagnostics(): void {
     onActivationEvent();
     clients.ActiveClient.logDiagnostics();
+}
+
+function onLogIntellisenseSetup(): void {
+    clients.ActiveClient.LogIntellisenseSetup();
 }
 
 function onRescanWorkspace(): void {

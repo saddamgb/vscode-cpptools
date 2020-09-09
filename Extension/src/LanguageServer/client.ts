@@ -529,6 +529,7 @@ export interface Client {
     updateCustomBrowseConfiguration(requestingProvider?: CustomConfigurationProvider1): Thenable<void>;
     provideCustomConfiguration(docUri: vscode.Uri, requestFile?: string): Promise<void>;
     logDiagnostics(): Promise<void>;
+    LogIntellisenseSetup(): Promise<void>;
     rescanFolder(): Promise<void>;
     toggleReferenceResultsView(): void;
     setCurrentConfigName(configurationName: string): Thenable<void>;
@@ -2140,6 +2141,10 @@ export class DefaultClient implements Client {
         diagnosticsChannel.show(false);
     }
 
+    /* public LogIntellisenseSetup: Promise<void> | undefined {
+        return ;
+    } */
+
     public async rescanFolder(): Promise<void> {
         await this.notifyWhenReady(() => this.languageClient.sendNotification(RescanFolderNotification));
     }
@@ -3224,6 +3229,7 @@ class NullClient implements Client {
     updateCustomBrowseConfiguration(requestingProvider?: CustomConfigurationProvider1): Thenable<void> { return Promise.resolve(); }
     provideCustomConfiguration(docUri: vscode.Uri, requestFile?: string): Promise<void> { return Promise.resolve(); }
     logDiagnostics(): Promise<void> { return Promise.resolve(); }
+    LogIntellisenseSetup(): Promise<void> { return Promise.resolve(); }
     rescanFolder(): Promise<void> { return Promise.resolve(); }
     toggleReferenceResultsView(): void {}
     setCurrentConfigName(configurationName: string): Thenable<void> { return Promise.resolve(); }
